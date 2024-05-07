@@ -21,5 +21,7 @@ from exercises import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('exercises.urls')),
-
 ]
+
+
+handler404 = views.page_not_found
