@@ -1,17 +1,24 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 
 def index(request):
-    return HttpResponse('<h1>Страница приложения the dream body</h1>')
+    # t = render_to_string('exercises/index.html')
+    # return HttpResponse(t)
+    return render(request, 'exercises/index.html')
+
+
+def about(request):
+    return render(request, 'exercises/about.html')
 
 
 def categories(request, cat_id):
     return HttpResponse(f'<h1>Упражнения на группы мышц</h1><p>id: {cat_id}</p>')
 
 
-def categories_by_slug(reguest, cat_slug):
+def categories_by_slug(request, cat_slug):
     if cat_slug == 'index':
         return redirect('home', permanent=True)
 
