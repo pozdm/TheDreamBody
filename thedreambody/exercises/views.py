@@ -4,36 +4,40 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 
 
+menu = [{'title': 'Главная', 'id': 'home'},
+        {'title': 'Тренировки', 'id': 'training'},
+        {'title': 'Питание', 'id': 'eat'},
+        {'title': 'Информация', 'id': 'about'},
+        {'title': 'Вход в аккаунт', 'id': 'login'},
+        ]
+
+
 def index(request):
-    # t = render_to_string('exercises/index.html')
-    # return HttpResponse(t)
-    return render(request, 'exercises/index.html')
+    data = {
+        'title': 'Главная страница',
+        'menu': menu,
+    }
+    return render(request, 'exercises/index.html', context=data)
 
 
 def about(request):
-    return render(request, 'exercises/about.html')
+    return render(request, 'exercises/about.html', context={'title': 'О сайте', 'menu': menu,})
 
 
-def categories(request, cat_id):
-    return HttpResponse(f'<h1>Упражнения на группы мышц</h1><p>id: {cat_id}</p>')
+def training(request):
+    return render(request, 'exercises/training.html', context={'title': 'Тренировки', 'menu': menu,})
 
 
-def categories_by_slug(request, cat_slug):
-    if cat_slug == 'index':
-        return redirect('home', permanent=True)
-
-    return HttpResponse(f'<h1>Упражнения на группы мышц</h1><p>slug: {cat_slug}</p>')
+def eat(request):
+    return render(request, 'exercises/eat.html', context={'title': 'Еда', 'menu': menu,})
 
 
-def archive(request, year):
-    if year == 2003:
-        raise Http404()
+def login(request):
+    return render(request, 'exercises/login.html', context={'title': 'Вход в систему', 'menu': menu,})
 
-    if year == 7777:
-        uri = reverse('cats', args=('music', ))
-        return redirect(uri)
 
-    return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
+def exercises(request):
+    pass
 
 
 def page_not_found(request, exception):
