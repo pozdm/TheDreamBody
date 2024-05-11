@@ -1,4 +1,5 @@
 {% load static %}
+{% load test_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,9 @@
         <a href="{% url item.id %}">{{ item.title }}</a>
         {% endfor %}
     </nav>
+
+    {% show_categories %}
+
     {% block content %} {% endblock %}
 </body>
 </html>

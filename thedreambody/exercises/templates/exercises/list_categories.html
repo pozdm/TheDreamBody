@@ -1,0 +1,3 @@
+{% for item in cats %}
+  <li><a href="{% url 'home' %}">{{ item.name }}</a></li>
+{% endfor %}
