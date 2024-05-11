@@ -1,18 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'exercises/css/styles.css' %}" rel="stylesheet" />
 </head>
 <body>
 
-    <ul>
+    <nav>
         {% for item in menu %}
-        <li>
-            <a href="{% url item.id %}">{{ item.title }}</a>
-        </li>
+        <a href="{% url item.id %}">{{ item.title }}</a>
         {% endfor %}
-    </ul>
+    </nav>
     {% block content %} {% endblock %}
 </body>
 </html>

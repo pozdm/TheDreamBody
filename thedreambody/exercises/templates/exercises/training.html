@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ title }}</h1>
+    <h1>{{ title }}</h1>
+
+    {% for item in data %}
+        <h2>{{ item.title }}</h2>
+        <img src="{{ item.picture }}" alt="Картинка" width="500" height="300">
+        <p>{{ item.info }}</p>
+        {% if not forloop.last %}
+            <hr>
+        {% endif %}
+    {% endfor %}
 {% endblock %}
